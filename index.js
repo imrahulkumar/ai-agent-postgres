@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { db } from './db/index.js';
 import { todosTable } from './db/schema.js';
 import readlineSync from 'readline-sync';
@@ -25,7 +26,10 @@ async function deleteTodoById(id) {
     return result;
 }
 
-const OPEN_API_KEY = 'AQ.Ab8RN6JLKyZGmJ2YU_hVP1WSw4CwZbj7-eNNqVYzdvqOcwV0XA';
+const OPEN_API_KEY = 'AQ.Ab8RN6KBKUevHk2F5LxIpHvEVjLRciVofGpHIJVPPHuOC1xtnw';
+if (!OPEN_API_KEY) {
+    throw new Error('GEMINI_API_KEY is not set. Add it to your .env file.');
+}
 const OPENAI_MODEL = 'gemini-3.5-flash-lite';
 
 
@@ -100,7 +104,7 @@ while (true) {
         });
 
         const result = chat.choices[0].message.content;
-        console.log('->', result);
+        // console.log('->', result);
         message.push({ role: 'assistant', content: result });
 
         // The model sometimes returns several steps as an array; run the action before trusting any output
