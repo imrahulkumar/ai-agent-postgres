@@ -163,13 +163,30 @@ The model's exact wording varies from run to run.
 
 ---
 
+## View the table in Drizzle Studio
+
+Drizzle Studio is a browser UI for looking at and editing your data. Start it with:
+
+```bash
+npm run studio
+```
+
+Then open **[https://local.drizzle.studio](https://local.drizzle.studio)** in your browser and select the `users` table to see every todo the agent has created.
+
+- Postgres must be running (`docker compose up -d`), because Studio connects using `DATABASE_URL` from `.env`.
+- Leave the `npm run studio` terminal open while you use the page. Stop it with `Ctrl+C`.
+- You can keep the agent running in a second terminal and refresh Studio to watch todos get added and deleted.
+- Edits you make in Studio go straight to the database, so the agent sees them the next time it calls a tool.
+
+---
+
 ## npm scripts
 
 | Command | What it does |
 | --- | --- |
 | `npm run generate` | Generate a new migration after editing `db/schema.js` |
 | `npm run migrate` | Apply pending migrations to the database |
-| `npm run studio` | Open Drizzle Studio to browse the data in your browser |
+| `npm run studio` | Start Drizzle Studio, then open https://local.drizzle.studio to browse the data |
 
 ### Changing the schema
 
